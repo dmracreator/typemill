@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TYPEMILL | Writing Workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=35" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-mark">
+          <div>
+            <p class="eyebrow">Creative Workspace</p>
+            <h1>TYPEMILL</h1>
+          </div>
+        </div>
+
+        <div class="sidebar-profile-card" id="sidebarProfileCard">
+          <button class="avatar avatar-large avatar-button" id="sidebarAvatarButton" type="button">
+            <span id="sidebarAvatarFallback">EM</span>
+            <img id="sidebarAvatarImage" alt="Author profile" hidden />
+          </button>
+          <div>
+            <h4 id="sidebarProfileName">Emilia Rose</h4>
+            <p class="muted" id="sidebarProfileSubtitle">Literary fiction, fantasy, essays</p>
+          </div>
+        </div>
+        <input type="file" id="authorPhotoInput" accept="image/*" hidden />
+
+        <nav class="sidebar-nav">
+          <button class="nav-link active" data-page-target="dashboard">
+            <span>Dashboard</span>
+          </button>
+          <button class="nav-link" data-page-target="stories">
+            <span>My Stories</span>
+            <small id="lastEditedStoryMeta">Edited today</small>
+          </button>
+          <button class="nav-link" data-page-target="workspace">
+            <span>Workspace</span>
+          </button>
+          <button class="nav-link" data-page-target="journal">
+            <span>Writer Journal</span>
+          </button>
+          <button class="nav-link" data-page-target="profile">
+            <span>Author Profile</span>
+          </button>
+          <button class="nav-link" data-page-target="settings">
+            <span>Settings</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-card">
+          <p class="eyebrow">Writing Goal</p>
+          <h3>Editable writing targets</h3>
+          <div class="goal-grid" id="goalGrid">
+            <label class="goal-item">
+              <span>Today</span>
+              <input id="goalTodayInput" type="number" min="0" step="50" />
+              <small id="goalTodayMeta">0 written</small>
+              <div class="meter"><span id="goalTodayBar"></span></div>
+            </label>
+            <label class="goal-item">
+              <span>This Week</span>
+              <input id="goalWeekInput" type="number" min="0" step="100" />
+              <small id="goalWeekMeta">0 written</small>
+              <div class="meter"><span id="goalWeekBar"></span></div>
+            </label>
+            <label class="goal-item">
+              <span>This Month</span>
+              <input id="goalMonthInput" type="number" min="0" step="250" />
+              <small id="goalMonthMeta">0 written</small>
+              <div class="meter"><span id="goalMonthBar"></span></div>
+            </label>
+            <label class="goal-item">
+              <span>This Year</span>
+              <input id="goalYearInput" type="number" min="0" step="1000" />
+              <small id="goalYearMeta">0 written</small>
+              <div class="meter"><span id="goalYearBar"></span></div>
+            </label>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Hide menu" title="Hide menu">
+            <span class="sidebar-toggle-icon" aria-hidden="true">☰</span>
+          </button>
+          <div class="topbar-actions">
+            <button class="ghost-button" id="backToStoriesButton">Back to My Stories</button>
+            <button class="primary-button" id="exportTopbarButton">Export EPUB</button>
+          </div>
+        </header>
+
+        <section class="page active" id="dashboard">
+          <div class="hero-panel">
+            <div class="hero-copy">
+              <p class="eyebrow" id="heroGreeting">Welcome back</p>
+              <h3>Your worlds are waiting.</h3>
+              <p>
+                TYPEMILL keeps your stories, notes, characters, chapters, and
+                creative rituals in one quiet place so you can return to the
+                page with focus.
+              </p>
+              <div class="hero-meta">
+                <div class="badge-soft" id="heroStreak">0 day writing streak</div>
+                <div class="badge-soft" id="heroActiveNovels">0 active novels</div>
+                <div class="badge-soft" id="heroWeekWords">0 words this week</div>
+              </div>
+            </div>
+            <div class="hero-visual" aria-hidden="true">
+              <div class="floating-book floating-book-main" id="heroBookOne"></div>
+              <div class="floating-book floating-book-accent" id="heroBookTwo"></div>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <p>Total Words</p>
+              <strong class="stat-number stat-rose" id="dashboardWords">0</strong>
+              <span>Across all current drafts</span>
+            </article>
+            <article class="stat-card">
+              <p>Total Pages</p>
+              <strong class="stat-number stat-lavender" id="dashboardPages">0</strong>
+              <span>A6 reading layout</span>
+            </article>
+            <article class="stat-card">
+              <p>Daily Word Count</p>
+              <strong class="stat-number stat-blue" id="dashboardDaily">0</strong>
+              <span>Written today</span>
+            </article>
+            <article class="stat-card">
+              <p>Monthly Progress</p>
+              <strong class="stat-number stat-sage" id="dashboardMonthly">0%</strong>
+              <span id="dashboardMonthlyDetail">0 / 20,000 words</span>
+            </article>
+          </div>
+
+          <div class="content-grid">
+            <div class="panel panel-wide">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Continue Writing</p>
+                  <h3>Recently edited stories</h3>
+                </div>
+                <button class="text-button" id="continueWritingButton">
+                  Open workspace
+                </button>
+              </div>
+              <div class="story-row-list" id="recentStoriesList"></div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Quick Actions</p>
+                  <h3>Start softly</h3>
+                </div>
+              </div>
+              <div class="action-grid">
+                <button class="action-card" data-action="new-story">New Story</button>
+                <button class="action-card" data-page-target="journal">Create Note</button>
+                <button class="action-card action-card-wide" data-action="calendar">Calendar Overview</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel analytics-goals-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Analytics</p>
+                <h3>Your writing at a glance</h3>
+              </div>
+              <span class="analytics-caption" id="goalCaption"></span>
+            </div>
+            <div class="goal-progress-grid" id="goalProgressGrid"></div>
+          </div>
+
+          <div class="panel heatmap-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Consistency</p>
+                <h3 id="heatmapTitle">Writing activity</h3>
+              </div>
+              <span class="analytics-caption" id="heatmapCaption"></span>
+            </div>
+            <div class="heatmap-layout">
+              <div class="heatmap-col">
+                <div class="heatmap" id="heatmap"></div>
+                <div class="heatmap-legend">
+                  <span>Less</span>
+                  <i class="heat-cell level-0"></i>
+                  <i class="heat-cell level-1"></i>
+                  <i class="heat-cell level-2"></i>
+                  <i class="heat-cell level-3"></i>
+                  <i class="heat-cell level-4"></i>
+                  <span>More</span>
+                </div>
+              </div>
+              <div class="top-stories-col">
+                <p class="eyebrow">Most worked on</p>
+                <ol class="top-stories" id="topStories"></ol>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-grid analytics-layout">
+            <div class="panel panel-wide">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">This week</p>
+                  <h3>Weekly progress</h3>
+                </div>
+                <span class="analytics-caption" id="weeklyCaption"></span>
+              </div>
+              <div class="chart-card">
+                <div class="chart-bars" id="chartBars" aria-label="Weekly writing chart"></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Momentum</p>
+                  <h3>Streaks &amp; pace</h3>
+                </div>
+              </div>
+              <div class="metric-tiles" id="momentumStats"></div>
+            </div>
+          </div>
+
+          <div class="content-grid analytics-layout">
+            <div class="panel panel-wide">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Distribution</p>
+                  <h3>Words by story</h3>
+                </div>
+              </div>
+              <div class="words-by-story" id="wordsByStory"></div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Library</p>
+                  <h3>Composition</h3>
+                </div>
+              </div>
+              <div class="metric-tiles" id="libraryStats"></div>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Recent activity</p>
+                  <h3>What you've done lately</h3>
+                </div>
+              </div>
+              <div class="activity-list" id="activityFeed"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="stories">
+          <div class="panel">
+            <div class="panel-heading stories-heading">
+              <div>
+                <p class="eyebrow">My Stories Library</p>
+                <h3>Open, edit, and publish one story at a time.</h3>
+              </div>
+              <button class="primary-button" data-action="new-story">+ New Story</button>
+            </div>
+
+            <div class="selection-banner" id="selectionBanner">
+              <div class="selection-story">
+                <div class="selection-cover library-cover cover-rose" id="selectionCover"></div>
+                <div>
+                <p class="eyebrow">Last Edited</p>
+                <h4 id="selectedStoryName">The Glass Orchard</h4>
+                </div>
+              </div>
+              <div class="selection-actions">
+                <button class="ghost-button" id="openSelectedStoryButton">Continue Writing</button>
+              </div>
+            </div>
+
+            <div class="filter-row story-tag-row">
+              <div>
+                <p class="eyebrow">Story Tags</p>
+                <div class="tag-chip-list" id="storyTagList"></div>
+              </div>
+            </div>
+
+            <div class="sort-row story-tools-row">
+              <label class="sort-card search-card">
+                <span>Search Stories</span>
+                <input
+                  class="search-input search-input-compact"
+                  id="storySearch"
+                  type="search"
+                  placeholder="Search stories, genres, notes..."
+                />
+              </label>
+              <label class="sort-card">
+                <span>Sort Stories</span>
+                <select class="select-input select-input-compact" id="sortStories">
+                  <option>Recently edited</option>
+                  <option>Alphabetical</option>
+                  <option>Word count</option>
+                  <option>Creation date</option>
+                </select>
+              </label>
+              <div class="sort-card view-card">
+                <span>View</span>
+                <div class="view-toggle">
+                  <button class="toggle-button active" data-view="grid">Grid</button>
+                  <button class="toggle-button" data-view="list">List</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="stories-display grid-view" id="storiesDisplay"></div>
+          </div>
+        </section>
+
+        <section class="page" id="workspace">
+          <div class="workspace-shell" id="workspaceShell">
+            <aside class="workspace-sidebar">
+              <div class="workspace-story-card">
+                <div class="workspace-cover-wrap">
+                  <button class="workspace-cover-button" id="workspaceCoverButton" type="button">
+                    <div class="workspace-cover library-cover" id="workspaceCover"></div>
+                    <span class="cover-edit-hint" aria-hidden="true">Edit cover</span>
+                  </button>
+                  <div class="cover-menu" id="coverMenu" hidden>
+                    <button type="button" id="coverUploadOption">Upload photo</button>
+                    <button type="button" class="cover-menu-danger" id="coverRemoveOption">Remove cover</button>
+                  </div>
+                </div>
+                <div class="workspace-story-copy">
+                  <p class="eyebrow">Current Story</p>
+                  <h3 id="workspaceStoryHeading">The Glass Orchard</h3>
+                  <p class="muted" id="workspaceStoryMeta">
+                    Literary Fantasy • 82,430 words
+                  </p>
+                </div>
+              </div>
+
+              <div class="workspace-controls">
+                <input
+                  type="file"
+                  id="coverUploadInput"
+                  accept="image/*"
+                  hidden
+                />
+              </div>
+
+              <div class="mini-card story-details-card">
+                <label class="stack-field">
+                  <span>Story Title</span>
+                  <input id="storyTitleInput" type="text" />
+                </label>
+                <label class="stack-field">
+                  <span>Genre</span>
+                  <input id="storyGenreInput" type="text" />
+                </label>
+                <label class="stack-field">
+                  <span>Word Goal</span>
+                  <input id="storyGoalInput" type="number" min="0" step="500" placeholder="e.g. 50000" />
+                </label>
+                <div class="story-goal-progress" id="storyGoalProgress" hidden>
+                  <div class="story-goal-top">
+                    <span id="storyGoalLabel">0 / 0 words</span>
+                    <strong id="storyGoalPercent">0%</strong>
+                  </div>
+                  <div class="meter"><span id="storyGoalBar"></span></div>
+                </div>
+                <label class="stack-field">
+                  <span>Book Blurb</span>
+                  <textarea id="storyDescriptionInput" rows="4"></textarea>
+                </label>
+              </div>
+
+              <div class="chapter-panel">
+                <div class="chapter-panel-head">
+                  <h4>Chapters</h4>
+                  <button class="mini-action" id="addChapterButton">New</button>
+                </div>
+                <div class="chapter-list" id="chapterList"></div>
+              </div>
+
+              <div class="workspace-mini-panels">
+                <div class="mini-card">
+                  <label class="stack-field">
+                    <span>Story Tags</span>
+                    <textarea id="storyTagsInput" rows="3"></textarea>
+                  </label>
+                </div>
+                <div class="mini-card">
+                  <div class="character-panel">
+                    <div class="chapter-panel-head">
+                      <h4>Characters</h4>
+                      <button class="mini-action" id="addCharacterButton">Add</button>
+                    </div>
+                    <div class="character-list" id="characterList"></div>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <div class="editor-column">
+              <div class="editor-toolbar has-selection-toolbar">
+                <div class="format-group floating-format-group" id="floatingFormatToolbar" hidden>
+                  <button type="button" data-format="bold">Bold</button>
+                  <button type="button" data-format="italic">Italic</button>
+                  <button type="button" data-format="underline">Underline</button>
+                  <button type="button" data-format="quote">Quote</button>
+                </div>
+                <div class="workspace-actions">
+                  <button class="toggle-dark" id="focusModeToggle">Focus mode</button>
+                  <button class="toggle-dark" id="readerViewToggle">Reader View</button>
+                  <button class="toggle-dark" id="sprintToggleButton">Sprint</button>
+                  <span id="saveStatus">Autosaved</span>
+                </div>
+              </div>
+
+              <div class="sprint-panel" id="sprintPanel" hidden>
+                <div class="mini-card sprint-card sprint-card-inline">
+                  <div>
+                    <h4>Writing Sprint</h4>
+                    <strong id="sprintClock">25:00</strong>
+                  </div>
+                  <div class="sprint-actions">
+                    <button class="ghost-button" id="startSprint">Start</button>
+                    <button class="ghost-button" id="resetSprint">Reset</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="editor-bar" id="editorBar">
+                <div class="editor-bar-inner" id="editorBarWriting">
+                  <div class="bar-group">
+                    <button type="button" class="bar-btn" data-format="bold" title="Bold" aria-label="Bold"><b>B</b></button>
+                    <button type="button" class="bar-btn" data-format="italic" title="Italic" aria-label="Italic"><i>I</i></button>
+                    <button type="button" class="bar-btn" data-format="underline" title="Underline" aria-label="Underline"><span style="text-decoration:underline">U</span></button>
+                    <button type="button" class="bar-btn" data-format="quote" title="Quote" aria-label="Quote">&ldquo;&rdquo;</button>
+                  </div>
+                  <span class="bar-divider"></span>
+                  <div class="bar-group">
+                    <div class="bar-segment" id="editorAlignGroup">
+                      <button type="button" class="bar-btn" data-align="left" title="Align left" aria-label="Align left"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><g fill="currentColor"><rect x="2" y="3" width="12" height="1.7" rx="0.85"/><rect x="2" y="7.15" width="8" height="1.7" rx="0.85"/><rect x="2" y="11.3" width="11" height="1.7" rx="0.85"/></g></svg></button>
+                      <button type="button" class="bar-btn" data-align="center" title="Align center" aria-label="Align center"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><g fill="currentColor"><rect x="2" y="3" width="12" height="1.7" rx="0.85"/><rect x="4" y="7.15" width="8" height="1.7" rx="0.85"/><rect x="2.5" y="11.3" width="11" height="1.7" rx="0.85"/></g></svg></button>
+                      <button type="button" class="bar-btn" data-align="right" title="Align right" aria-label="Align right"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><g fill="currentColor"><rect x="2" y="3" width="12" height="1.7" rx="0.85"/><rect x="6" y="7.15" width="8" height="1.7" rx="0.85"/><rect x="3" y="11.3" width="11" height="1.7" rx="0.85"/></g></svg></button>
+                    </div>
+                    <button type="button" class="bar-btn" id="editorIndentButton" title="Indent" aria-label="Indent"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><g fill="currentColor"><rect x="5" y="3" width="9" height="1.7" rx="0.85"/><rect x="2" y="7.15" width="12" height="1.7" rx="0.85"/><rect x="2" y="11.3" width="8" height="1.7" rx="0.85"/></g></svg></button>
+                  </div>
+                  <span class="bar-divider"></span>
+                  <div class="bar-group">
+                    <select class="bar-font-select" id="editorFontSelect" title="Font">
+                      <option value="serif">Serif</option>
+                      <option value="sans">Sans-serif</option>
+                      <option value="mono">Mono</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="editor-bar-inner" id="editorBarReader" hidden>
+                  <div class="bar-group reader-color-group">
+                    <button class="reader-color-chip reader-color-pink" type="button" data-hl="pink" title="Pink highlight" aria-label="Pink highlight"></button>
+                    <button class="reader-color-chip reader-color-yellow" type="button" data-hl="yellow" title="Yellow highlight" aria-label="Yellow highlight"></button>
+                    <button class="reader-color-chip reader-color-blue" type="button" data-hl="blue" title="Blue highlight" aria-label="Blue highlight"></button>
+                  </div>
+                  <span class="bar-divider"></span>
+                  <button class="bar-btn bar-comment-btn" id="barCommentButton" type="button" title="Add comment" aria-label="Add comment"><svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M2.6 4.4a1.5 1.5 0 0 1 1.5-1.5h7.8a1.5 1.5 0 0 1 1.5 1.5v3.9a1.5 1.5 0 0 1-1.5 1.5H7l-3 2.3v-2.3h-.4a1.5 1.5 0 0 1-1.5-1.5Z"/></svg><span>Comment</span></button>
+                </div>
+              </div>
+
+              <div class="editor-surface">
+                <div class="chapter-meta-grid">
+                  <label class="field-card">
+                    <span>Chapter Title</span>
+                    <input id="chapterTitleInput" type="text" />
+                  </label>
+                  <label class="field-card">
+                    <span id="chapterMetaSecondaryLabel">Chapter Tags</span>
+                    <input id="chapterTagsInput" type="text" />
+                  </label>
+                </div>
+                <div class="reader-selection-toolbar" id="readerSelectionToolbar" hidden>
+                  <button class="reader-color-chip reader-color-pink" id="readerHighlightPinkButton" type="button" aria-label="Pink highlight"></button>
+                  <button class="reader-color-chip reader-color-yellow" id="readerHighlightYellowButton" type="button" aria-label="Yellow highlight"></button>
+                  <button class="reader-color-chip reader-color-blue" id="readerHighlightBlueButton" type="button" aria-label="Blue highlight"></button>
+                  <button class="ghost-button" id="readerCommentButton" type="button">Comment</button>
+                </div>
+
+                <div
+                  class="chapter-editor"
+                  id="storyEditor"
+                  contenteditable="true"
+                  spellcheck="true"
+                  role="textbox"
+                  aria-multiline="true"
+                  data-placeholder="Write the chapter here..."
+                ></div>
+                <div class="reader-surface" id="readerSurface" hidden></div>
+
+                <div class="comment-balloon" id="commentBalloon" hidden>
+                  <textarea id="commentBalloonText" rows="3" placeholder="Write a comment..."></textarea>
+                  <div class="comment-balloon-actions">
+                    <button type="button" class="primary-button" id="commentBalloonSave">Save</button>
+                    <button type="button" class="ghost-button" id="commentBalloonComplete">Mark done</button>
+                    <button type="button" class="ghost-button cover-menu-danger" id="commentBalloonDelete">Delete</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="workspace-footer-panels">
+                <div class="mini-card summary-card">
+                  <h4>Chapter Summary</h4>
+                  <p id="chapterSummaryText">
+                    0 words • 0 estimated A6 pages
+                  </p>
+                  <label class="stack-field summary-notes-field">
+                    <span>Story Notes</span>
+                    <textarea id="storyNotesInput" rows="4" placeholder="Capture scene intentions, revision notes, emotional beats, or a short chapter summary..."></textarea>
+                  </label>
+                </div>
+                <div class="mini-card reader-comments-card" id="readerCommentsCard">
+                  <h4>Highlights &amp; comments log</h4>
+                  <div class="reader-comment-list" id="readerCommentList"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="profile">
+          <div class="profile-layout profile-stack">
+            <div class="panel profile-overview-card">
+              <div class="profile-overview-top">
+                <div class="profile-overview-main">
+                  <button class="avatar avatar-xl avatar-button" id="profileAvatarButton" type="button">
+                    <span id="profileAvatarFallback">ER</span>
+                    <img id="profileAvatarImage" alt="Author profile" hidden />
+                  </button>
+                  <div class="profile-overview-copy">
+                    <p class="eyebrow">Author Profile</p>
+                    <h3 id="profileDisplayName">Emilia Rose</h3>
+                    <p class="profile-role-line" id="profileDisplayRole">Lyrical fantasy and literary fiction novelist</p>
+                    <p id="profileDisplayBio">
+                      Novelist drawn to lyrical fantasy, intimate family histories,
+                      and stories where landscape behaves like memory.
+                    </p>
+                    <div class="profile-tags" id="profileTagPreview"></div>
+                  </div>
+                </div>
+
+                <div class="profile-presence-card">
+                  <p class="eyebrow">Reader Presence</p>
+                  <h4 id="profileDisplaySignature">Softly mythic, emotionally precise</h4>
+                  <p class="muted" id="profileDisplayLocation">Amsterdam, NL • Writing at first light</p>
+                  <div class="social-links" id="profileSocialPreview"></div>
+                </div>
+              </div>
+
+              <div class="profile-personalize-grid">
+                <div class="mini-card profile-mini">
+                  <p class="eyebrow">Profile Basics</p>
+                  <label class="profile-link-row">
+                    <span>Display Name</span>
+                    <input id="profileNameInput" type="text" value="Emilia Rose" />
+                  </label>
+                  <label class="profile-link-row">
+                    <span>Author Line</span>
+                    <input id="profileRoleInput" type="text" value="Lyrical fantasy and literary fiction novelist" />
+                  </label>
+                  <label class="profile-link-row">
+                    <span>Location</span>
+                    <input id="profileLocationInput" type="text" value="Amsterdam, NL • Writing at first light" />
+                  </label>
+                </div>
+                <div class="mini-card profile-mini">
+                  <p class="eyebrow">Voice & Genres</p>
+                  <label class="profile-link-row">
+                    <span>Signature</span>
+                    <input id="profileSignatureInput" type="text" value="Softly mythic, emotionally precise" />
+                  </label>
+                  <label class="profile-link-row">
+                    <span>Genres</span>
+                    <input id="profileGenresInput" type="text" value="Fantasy, Literary Fiction, Romance, Slow burn" />
+                  </label>
+                  <label class="profile-link-row">
+                    <span>Bio</span>
+                    <textarea id="profileBioInput" rows="5">Novelist drawn to lyrical fantasy, intimate family histories, and stories where landscape behaves like memory.</textarea>
+                  </label>
+                </div>
+                <div class="mini-card profile-mini profile-links-card">
+                  <p class="eyebrow">Social Media Links</p>
+                  <div class="profile-link-editor">
+                    <label class="profile-link-row">
+                      <span>Website</span>
+                      <input id="profileWebsiteInput" type="text" value="emiliarosewrites.com" />
+                    </label>
+                    <label class="profile-link-row">
+                      <span>Instagram</span>
+                      <input id="profileInstagramInput" type="text" value="@emiliarosewrites" />
+                    </label>
+                    <label class="profile-link-row">
+                      <span>Newsletter</span>
+                      <input id="profileNewsletterInput" type="text" value="Letters from the Orchard" />
+                    </label>
+                    <label class="profile-link-row">
+                      <span>TikTok</span>
+                      <input id="profileTiktokInput" type="text" value="@emiliaroseauthor" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-wide">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Published Stories</p>
+                  <h3>Showcase</h3>
+                </div>
+              </div>
+              <div class="showcase-grid showcase-grid-wide" id="profileShowcaseGrid"></div>
+            </div>
+
+            <div class="profile-stats-grid">
+              <article class="panel metric-panel">
+                <p class="eyebrow">Followers</p>
+                <strong id="profileFollowersValue">18.2k</strong>
+                <span class="muted">Across reader platforms</span>
+              </article>
+              <article class="panel metric-panel">
+                <p class="eyebrow">Completed Stories</p>
+                <strong id="profileCompletedStoriesValue">7</strong>
+                <span class="muted">Drafted and finished</span>
+              </article>
+              <article class="panel metric-panel">
+                <p class="eyebrow">Completed Goals</p>
+                <strong id="profileCompletedGoalsValue">132</strong>
+                <span class="muted">Daily and weekly writing goals</span>
+              </article>
+              <article class="panel metric-panel">
+                <p class="eyebrow">Total Stories</p>
+                <strong id="profileTotalStoriesValue">11</strong>
+                <span class="muted">Including active drafts</span>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="journal">
+          <div class="panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Writer Journal</p>
+                <h3>A private feed for reflections and ideas.</h3>
+              </div>
+            </div>
+
+            <div class="journal-composer" id="journalComposer">
+              <textarea
+                id="journalEntryInput"
+                placeholder="Write a reflection, capture a draft idea, or note today's emotional weather… type @ to tag a story"
+              ></textarea>
+              <div class="mention-dropdown" id="mentionDropdown" hidden></div>
+              <div class="composer-actions">
+                <span class="composer-hint" id="journalEditingHint" hidden>Editing entry…</span>
+                <button class="ghost-button" id="cancelJournalEdit" type="button" hidden>Cancel</button>
+                <button class="primary-button" id="postJournalEntry" type="button">Post Update</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel journal-feed-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Feed</p>
+                <h3>Your entries</h3>
+              </div>
+            </div>
+            <div class="timeline" id="journalTimeline"></div>
+          </div>
+        </section>
+
+        <section class="page settings-page" id="settings">
+          <div class="settings-shell">
+            <div class="settings-topbar">
+              <div>
+                <p class="eyebrow">Settings</p>
+                <h2>Manage your workspace</h2>
+              </div>
+              <nav class="settings-jump" aria-label="Settings sections">
+                <button type="button" data-settings-jump="settingsAccountSection" class="active">Account</button>
+                <button type="button" data-settings-jump="settingsWritingSection">Writing</button>
+                <button type="button" data-settings-jump="settingsAppearanceSection">Appearance</button>
+                <button type="button" data-settings-jump="settingsNotificationsSection">Notifications</button>
+                <button type="button" data-settings-jump="settingsDataSection">Data</button>
+              </nav>
+            </div>
+
+            <div class="settings-sheet">
+              <!-- Account -->
+              <section class="settings-section" id="settingsAccountSection">
+                <div class="settings-section-head">
+                  <h3>Account</h3>
+                  <p>Your identity and sign-in security.</p>
+                </div>
+
+                <div class="settings-identity">
+                  <div class="settings-identity-avatar" id="settingsIdentityAvatar"><span>EM</span></div>
+                  <div class="settings-identity-copy">
+                    <strong id="settingsIdentityName">Author</strong>
+                    <span class="account-chip" id="settingsSignedInChip">Signed in</span>
+                    <small id="settingsAccountMeta"></small>
+                  </div>
+                </div>
+
+                <div class="settings-inline-actions">
+                  <button class="ghost-button" id="settingsAddAccountButton">Switch account</button>
+                </div>
+
+                <div class="settings-subhead">Profile details</div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Email</strong>
+                    <span>Used to sign in to your workspace.</span>
+                  </div>
+                  <div class="settings-row-control">
+                    <input id="settingsEmailInput" type="email" placeholder="name@example.com" />
+                  </div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Display name</strong>
+                    <span>Shown across your dashboard and author profile.</span>
+                  </div>
+                  <div class="settings-row-control">
+                    <input id="settingsDisplayNameInput" type="text" placeholder="Author name" />
+                  </div>
+                </div>
+                <div class="settings-row settings-row-action">
+                  <div class="settings-row-control settings-row-control-wide">
+                    <button class="primary-button" id="settingsSaveAccountButton">Save changes</button>
+                    <p class="settings-feedback" id="settingsAccountFeedback" hidden></p>
+                  </div>
+                </div>
+
+                <div class="settings-subhead">Change password</div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Current password</strong>
+                    <span>Confirm it's you before making changes.</span>
+                  </div>
+                  <div class="settings-row-control">
+                    <input id="settingsCurrentPasswordInput" type="password" autocomplete="current-password" placeholder="••••••••" />
+                  </div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>New password</strong>
+                    <span>At least 6 characters.</span>
+                  </div>
+                  <div class="settings-row-control">
+                    <input id="settingsNewPasswordInput" type="password" autocomplete="new-password" placeholder="New password" />
+                  </div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Confirm new password</strong>
+                    <span>Repeat the new password.</span>
+                  </div>
+                  <div class="settings-row-control">
+                    <input id="settingsConfirmPasswordInput" type="password" autocomplete="new-password" placeholder="Repeat new password" />
+                  </div>
+                </div>
+                <div class="settings-row settings-row-action">
+                  <div class="settings-row-control settings-row-control-wide">
+                    <button class="primary-button" id="settingsChangePasswordButton">Update password</button>
+                    <p class="settings-feedback" id="settingsPasswordFeedback" hidden></p>
+                  </div>
+                </div>
+
+                <div class="settings-subhead settings-subhead-danger">Session & danger zone</div>
+                <div class="settings-row settings-row-action">
+                  <div class="settings-row-label">
+                    <strong>Sign out</strong>
+                    <span>End this session on this device. Your account stays saved.</span>
+                  </div>
+                  <div class="settings-row-control">
+                    <button class="ghost-button danger-button" id="settingsSignOutButton">Sign out</button>
+                  </div>
+                </div>
+                <div class="settings-row settings-row-action">
+                  <div class="settings-row-label">
+                    <strong>Delete account</strong>
+                    <span>Permanently remove this account and all its stories from this browser.</span>
+                  </div>
+                  <div class="settings-row-control">
+                    <button class="ghost-button danger-button-solid" id="settingsDeleteAccountButton">Delete account</button>
+                  </div>
+                </div>
+                <p class="settings-feedback" id="settingsDangerFeedback" hidden></p>
+              </section>
+
+              <!-- Writing -->
+              <section class="settings-section" id="settingsWritingSection">
+                <div class="settings-section-head">
+                  <h3>Writing</h3>
+                  <p>Defaults for sprints and milestone nudges.</p>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Default sprint</strong>
+                    <span>Length of a focused writing sprint.</span>
+                  </div>
+                  <div class="settings-row-control">
+                    <select id="settingsSprintLengthSelect">
+                      <option value="15">15 minutes</option>
+                      <option value="25">25 minutes</option>
+                      <option value="45">45 minutes</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Milestone reminder</strong>
+                    <span>Celebrate progress at this word interval.</span>
+                  </div>
+                  <div class="settings-row-control">
+                    <select id="settingsMilestoneReminderSelect">
+                      <option value="500">Every 500 words</option>
+                      <option value="1000">Every 1,000 words</option>
+                      <option value="2000">Every 2,000 words</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="settings-row settings-row-action">
+                  <div class="settings-row-label">
+                    <strong>Sync goals</strong>
+                    <span>Apply the milestone interval to your daily sidebar goal.</span>
+                  </div>
+                  <div class="settings-row-control">
+                    <button class="ghost-button" id="settingsSyncGoalsButton">Sync With Sidebar Goals</button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Appearance -->
+              <section class="settings-section" id="settingsAppearanceSection">
+                <div class="settings-section-head">
+                  <h3>Appearance</h3>
+                  <p>Tune the palette and motion of your workspace.</p>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Palette</strong>
+                    <span>Overall colour mood.</span>
+                  </div>
+                  <div class="settings-row-control">
+                    <select id="settingsPaletteSelect">
+                      <option value="pastel">Soft Pastel</option>
+                      <option value="rose">Rose Studio</option>
+                      <option value="mist">Dusty Mist</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Reduce motion</strong>
+                    <span>Calm interface animations and transitions.</span>
+                  </div>
+                  <div class="settings-row-control settings-row-control-end">
+                    <label class="switch">
+                      <input id="settingsReducedMotionToggle" type="checkbox" />
+                      <span class="switch-slider"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Compact sidebar cards</strong>
+                    <span>Tighten spacing in the sidebar panels.</span>
+                  </div>
+                  <div class="settings-row-control settings-row-control-end">
+                    <label class="switch">
+                      <input id="settingsCompactSidebarToggle" type="checkbox" />
+                      <span class="switch-slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Notifications -->
+              <section class="settings-section" id="settingsNotificationsSection">
+                <div class="settings-section-head">
+                  <h3>Notifications</h3>
+                  <p>Choose which writing reminders you'd like to receive.</p>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Streak reminders</strong>
+                    <span>Nudges to keep your writing streak alive.</span>
+                  </div>
+                  <div class="settings-row-control settings-row-control-end">
+                    <label class="switch">
+                      <input id="settingsNotifyStreaksToggle" type="checkbox" />
+                      <span class="switch-slider"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Export confirmations</strong>
+                    <span>Confirm when an EPUB export finishes.</span>
+                  </div>
+                  <div class="settings-row-control settings-row-control-end">
+                    <label class="switch">
+                      <input id="settingsNotifyExportsToggle" type="checkbox" />
+                      <span class="switch-slider"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Reader comment alerts</strong>
+                    <span>Hear about new annotations and comments.</span>
+                  </div>
+                  <div class="settings-row-control settings-row-control-end">
+                    <label class="switch">
+                      <input id="settingsNotifyCommentsToggle" type="checkbox" />
+                      <span class="switch-slider"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Backup reminders</strong>
+                    <span>Periodic prompts to download a safe copy.</span>
+                  </div>
+                  <div class="settings-row-control settings-row-control-end">
+                    <label class="switch">
+                      <input id="settingsNotifyBackupsToggle" type="checkbox" />
+                      <span class="switch-slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Data -->
+              <section class="settings-section" id="settingsDataSection">
+                <div class="settings-section-head">
+                  <h3>Backup &amp; data</h3>
+                  <p>Keep safe copies of your stories and restore them anytime.</p>
+                </div>
+                <div class="settings-row">
+                  <div class="settings-row-label">
+                    <strong>Backup frequency</strong>
+                    <span>How often to remind you to back up.</span>
+                  </div>
+                  <div class="settings-row-control">
+                    <select id="settingsBackupFrequencySelect">
+                      <option value="daily">Daily</option>
+                      <option value="weekly">Weekly</option>
+                      <option value="manual">Manual only</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="settings-row settings-row-action">
+                  <div class="settings-row-label">
+                    <strong>Export</strong>
+                    <span>Download a full backup or just your story library.</span>
+                  </div>
+                  <div class="settings-row-control settings-row-control-buttons">
+                    <button class="ghost-button" id="settingsDownloadBackupButton">Download Backup</button>
+                    <button class="ghost-button" id="settingsExportLibraryButton">Export Story Library</button>
+                  </div>
+                </div>
+                <div class="settings-row settings-row-action">
+                  <div class="settings-row-label">
+                    <strong>Restore</strong>
+                    <span>Replace this account's data from a backup file.</span>
+                  </div>
+                  <div class="settings-row-control">
+                    <input id="settingsRestoreInput" type="file" accept="application/json" hidden />
+                    <button class="ghost-button" id="settingsRestoreButton">Restore Backup</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="auth-gate" id="authGate" hidden>
+      <div class="auth-card">
+        <div class="auth-brand">
+          <p class="eyebrow">Creative Workspace</p>
+          <h1>TYPEMILL</h1>
+          <p class="auth-tagline">Your stories, characters, and quiet writing rituals — kept in one private place.</p>
+        </div>
+
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-auth-tab="signin" type="button">Sign In</button>
+          <button class="auth-tab" data-auth-tab="signup" type="button">Create Account</button>
+        </div>
+
+        <p class="auth-error" id="authError" hidden></p>
+
+        <form class="auth-panel" data-auth-panel="signin" id="authSignInForm">
+          <label class="auth-field">
+            <span>Email</span>
+            <input id="authSignInEmail" type="email" autocomplete="username" placeholder="name@example.com" required />
+          </label>
+          <label class="auth-field">
+            <span>Password</span>
+            <input id="authSignInPassword" type="password" autocomplete="current-password" placeholder="Your password" required />
+          </label>
+          <button class="primary-button auth-submit" type="submit">Sign In</button>
+          <button class="auth-link" id="authForgotButton" type="button">Forgot password?</button>
+        </form>
+
+        <form class="auth-panel" data-auth-panel="signup" id="authSignUpForm" hidden>
+          <label class="auth-field">
+            <span>Display Name</span>
+            <input id="authSignUpName" type="text" autocomplete="name" placeholder="Author name" required />
+          </label>
+          <label class="auth-field">
+            <span>Email</span>
+            <input id="authSignUpEmail" type="email" autocomplete="username" placeholder="name@example.com" required />
+          </label>
+          <label class="auth-field">
+            <span>Password</span>
+            <input id="authSignUpPassword" type="password" autocomplete="new-password" placeholder="At least 6 characters" required />
+          </label>
+          <label class="auth-field">
+            <span>Confirm Password</span>
+            <input id="authSignUpConfirm" type="password" autocomplete="new-password" placeholder="Repeat password" required />
+          </label>
+          <button class="primary-button auth-submit" type="submit">Create Account</button>
+        </form>
+
+        <div class="auth-divider"><span>or</span></div>
+        <button class="ghost-button auth-google" data-auth-google type="button">
+          <span class="g-logo" aria-hidden="true">G</span> Continue with Google
+        </button>
+        <p class="auth-note">Accounts are secured by Firebase Authentication. Your password is hashed and stored on Google's servers — never in plain text — and each writer can only access their own work.</p>
+      </div>
+    </div>
+
+    <script type="module" src="app.js?v=38"></script>
+  </body>
+</html>
